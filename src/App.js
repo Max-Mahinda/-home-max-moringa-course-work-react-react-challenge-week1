@@ -1,23 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import { useState,useEffect } from 'react';
 
 function App() {
+  const [transactions,setTransactions]=useState([])
+  useEffect (()=> {
+    const getTransactions = async () =>{
+      const transactionsfromserver = await fetchTransactions()
+      setTransactions(transactionsfromserver)
+    }
+
+    getTransactions()
+  }, [])
+
+  //fetch transactions
+  const fetchTransactions = async () => {
+    const res = await fetch ('http://localhost:3000/transactions')
+    const data = await res.json()
+
+    console.log(data)
+  }
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+    <Header />
     </div>
   );
 }
