@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import { useState,useEffect } from 'react';
+import SearchBar from './SearhaBar';
 
 function App() {
   const [transactions,setTransactions]=useState([])
@@ -27,6 +28,7 @@ function App() {
     <div className="App">
       
     <Header />
+    <SearchBar/>
     </div>
   );
 }
