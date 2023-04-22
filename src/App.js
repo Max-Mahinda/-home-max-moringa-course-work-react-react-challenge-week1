@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import { useState,useEffect } from 'react';
 import SearchBar from './SearhaBar';
+import Transactions from './components/Transactions';
 
 function App() {
   const [transactions,setTransactions]=useState([])
@@ -20,6 +20,8 @@ function App() {
     const res = await fetch ('http://localhost:3000/transactions')
     const data = await res.json()
 
+    return data
+
     console.log(data)
   }
 
@@ -29,6 +31,7 @@ function App() {
       
     <Header />
     <SearchBar/>
+    <Transactions transactions={transactions} />
     </div>
   );
 }
