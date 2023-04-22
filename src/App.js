@@ -3,10 +3,12 @@ import Header from './components/Header';
 import { useState,useEffect } from 'react';
 import SearchBar from './SearhaBar';
 import Transactions from './components/Transactions';
+import AddTransaction from './components/AddTransaction';
 
 function App() {
   const [transactions,setTransactions]=useState([])
   const [keyword, setKeyword] = useState('');
+  const [showAddTransactions, setShowAddTransactions] = useState(false)
   useEffect (()=> {
     const getTransactions = async () =>{
       const transactionsfromserver = await fetchTransactions()
@@ -35,6 +37,12 @@ function App() {
     setTransactions(filtered);
  }
 
+ const addTransaction = (transaction) => {
+  const id = Math.floor(Math.random() * 10000) + 1
+  const newTransaction = {id, ...transaction}
+  setTransactions([...transactions, newTransaction])
+}
+
   
   return (
     <div className="App">
@@ -42,6 +50,7 @@ function App() {
     <Header />
     <SearchBar keyword={keyword} onchange ={updateKeyword}/>
     <Transactions transactions={transactions} onchange = {updateKeyword}/>
+    <AddTransaction onAdd = {addTransaction}/>
     </div>
   );
 }
