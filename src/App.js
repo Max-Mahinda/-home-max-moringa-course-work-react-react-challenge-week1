@@ -20,7 +20,7 @@ function App() {
 
   //fetch transactions
   const fetchTransactions = async () => {
-    const res = await fetch ('http://localhost:3000/transactions')
+    const res = await fetch ('http://localhost:3333/transactions')
     const data = await res.json()
     setTransactions(data)
 
@@ -48,7 +48,7 @@ function App() {
     <div className="App">
       
     <Header />
-    <SearchBar keyword={keyword} onchange ={updateKeyword}/>
+    <SearchBar keyword={keyword} onChange ={updateKeyword}/>
     <Transactions transactions={transactions} onchange = {updateKeyword}/>
     <AddTransaction onAdd = {addTransaction}/>
     </div>
